@@ -191,6 +191,17 @@ $app->get( '/book/search/', function() use( $app) {
       $book = array();
       $book['title'] = $raw_potential_match->title;
       $book['color'] = $raw_potential_match->color;
+      $book['id'] = $raw_potential_match->id;
+      if( $raw_potential_match->completed ) {
+        $book['completed'] = "completed";
+      } else {
+        $book['completed'] = "not completed";
+      }
+      if( $raw_potential_match->checked_out ) {
+        $book['checked_out'] = "checked out";
+      } else {
+        $book['checked_out'] = "not checked out";
+      }
       $author_ids = ORM::for_table( 'books_authors' )->where( 'book_id', $raw_potential_match->id )->find_many();
       $authors = array();
       foreach( $author_ids as $author_id ) {
@@ -227,6 +238,17 @@ $app->get( '/book/all/', function()  use( $app ) {
     $book = array();
     $book['title'] = $raw_book->title;
     $book['color'] = $raw_book->color;
+    $book['id'] = $raw_book->id;
+    if( $raw_book->completed ) {
+      $book['completed'] = "completed";
+    } else {
+      $book['completed'] = "not completed";
+    }
+    if( $raw_book->checked_out ) {
+      $book['checked_out'] = "checked out";
+    } else {
+      $book['checked_out'] = "not checked out";
+    }
     $author_ids = ORM::for_table( 'books_authors' )->where( 'book_id', $raw_book->id )->find_many();
     $authors = array();
     foreach( $author_ids as $author_id ) {
@@ -297,6 +319,18 @@ $app->get( '/tag/find/', function() use( $app ) {
 $app->post( '/book/create/', function() use( $app ) {
   $title = $app->request()->params( 'title' );
   $color = $app->request()->params( 'color' );
+  $raw_completed = $app->request()->params( 'completed' );
+  if( $raw_completed == "true" ) {
+    $completed = true;
+  } else {
+    $completed = false;
+  }
+  $raw_checked_out = $app->request()->params( 'checked_out' );
+  if( $raw_checked_out == "true" ) {
+    $checked_out = true;
+  } else {
+    $checked_out = false;
+  }
   $raw_authors = $app->request()->params( 'authors' );
   $raw_tags = $app->request()->params( 'tags' );
   $owner_username = $_SESSION['current_user']->username;
@@ -306,7 +340,9 @@ $app->post( '/book/create/', function() use( $app ) {
   $book = ORM::for_table( 'books' )->create();;
   $book->title = $title;
   $book->color = $color;
-  //$book->owner = $owner_id;
+  $book->completed = $completed;
+  $book->checked_out = $checked_out;
+  $book->owner = $owner_id;
   $book->save();
   
   $authors = array();

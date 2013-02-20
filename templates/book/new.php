@@ -7,6 +7,20 @@
     <h2 class="form-subtitle">create a book</h2>
     <input type="text" class="title" name="title" placeholder="Title">
     <input type="text" class="color" name="color" placeholder="Color">
+    <div class="select-wrapper complated-wrapper">
+      <label>Completed</label>
+      <select class="completed" name="completed">
+        <option value="true">True</option>
+        <option value="false">False</option>
+      </select>
+    </div>
+    <div class="select-wrapper checked-out-wrapper">
+      <label>Checked Out</label>
+      <select class="checked_out" name="checked_out">
+        <option value="true">True</option>
+        <option value="false">False</option>
+      </select>
+    </div>
     <div class="authors">
       <input type="text" class="author" name="author" placeholder="Author">
     </div>

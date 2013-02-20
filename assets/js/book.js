@@ -137,6 +137,8 @@ $(document).ready( function() {
         data: {
           title: $(this.el).find( '.title' ).val(),
           color: $(this.el).find( '.color' ).val(),
+          completed: $(this.el).find( '.completed' ).val(),
+          checked_out: $(this.el).find( '.checked_out' ).val(),
           authors: authors,
           tags: tags
         },

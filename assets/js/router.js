@@ -74,12 +74,12 @@ $(document).ready( function() {
             var app_view = new window.AppView({ model: status });
             app_view.render();
           }
-          if( status.get('is_logged_in') ) {
+          //if( status.get('is_logged_in') ) {
             var new_user_view = new window.NewUserView();
             new_user_view.render( false );          
-          } else {
-            Backbone.History.navigate( '#login', true )
-          }
+          //} else {
+            //Backbone.History.navigate( '#login', true )
+          //}
         }
       });
     },

@@ -15,6 +15,10 @@
       <th>Color</th>
       <th>Authors</th>
       <th>Tags</th>
+      <th>Completed</th>
+      <th>Checked Out</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </table>
 </script>
@@ -32,4 +36,8 @@
       <a href="#tag/<%= tags[i]['id'] %>/show"><%= tags[i]['name'] %></a>
     <% } %>
   </td>
+  <td><%= completed %></td>
+  <td><%= checked_out %></td>
+  <td><a href="#book/<%= id %>/show">Edit</a></td>
+  <td><a href="#book/<%= id %>/delete">Delete</a></td>
 </script>
