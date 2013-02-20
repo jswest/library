@@ -4,7 +4,6 @@ require_once 'library/Slim/Slim.php';
 require_once 'library/idiorm/idiorm.php';
 require_once 'library/phpass/src/Phpass.php';
 require_once 'library/authenticate/authenticate.php';
-require_once 'library/zebra/zebra_image.php';
 
 ORM::configure( 'mysql:host=localhost;dbname=library_db' );
 ORM::configure('username', 'root');
