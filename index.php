@@ -305,7 +305,7 @@ $app->get( '/tag/find/', function() use( $app ) {
   $raw_tags = ORM::for_table( 'tags' )->where_like( 'name', "%$query%" )->find_many();
   $tags = array();
   foreach( $raw_tags as $raw_tag ) {
-    $tag = $raw_tags['name'];
+    $tag = $raw_tag->name;
     array_push( $tags, $tag );
   }
   $response = array();
